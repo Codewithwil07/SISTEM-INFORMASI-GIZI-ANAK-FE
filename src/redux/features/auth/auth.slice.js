@@ -6,7 +6,7 @@ export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async ({ username, password }, { rejectWithValue }) => {
     try {
-      const response = await fetch('https://gis-gizi-be.vercel.app', {
+      const response = await fetch('https://gis-gizi-be.vercel.app/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
