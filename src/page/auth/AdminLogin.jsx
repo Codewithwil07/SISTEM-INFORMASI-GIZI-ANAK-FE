@@ -20,6 +20,8 @@ const AdminLogin = () => {
     // Dispatch login action
     try {
       const result = await dispatch(loginUser({ username, password })).unwrap();
+      console.log(result);
+
       if (result.msg) {
         navigate('/admin/dashboard');
       }
