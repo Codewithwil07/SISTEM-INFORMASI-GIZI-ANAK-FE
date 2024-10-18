@@ -30,7 +30,7 @@ export const createData = createAsyncThunk(
   'data/createData',
   async (data, { rejectWithValue }) => {
     try {
-      const response = await fetch(`/api/data/laporan-gizi`, {
+      const response = await fetch(`/api/laporan-gizi`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
