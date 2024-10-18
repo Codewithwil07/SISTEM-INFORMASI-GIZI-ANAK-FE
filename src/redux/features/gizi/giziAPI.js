@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://gis-gizi-be.vercel.app';
 
 export const getData = createAsyncThunk(
   'data/fetchData',
