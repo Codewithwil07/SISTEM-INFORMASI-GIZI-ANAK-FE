@@ -1,0 +1,236 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "kecamatan": "Pragaan",
+          "puskesmas": "Pragaan",
+          "jumlah_balita_ditimbang": 3576,
+          "underweight": 211,
+          "underweight_percent": 5.9,
+          "jumlah_balita_diukur_tinggi": 3583,
+          "stunting": 64,
+          "stunting_percent": 1.8,
+          "gizi_kurang": 246,
+          "gizi_kurang_percent": 6.8,
+          "gizi_buruk": 55,
+          "gizi_buruk_percent": 1.5,
+          "latitude": -7.1234,
+          "longitude": 113.5678
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [113.5678, -7.1234]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "kecamatan": "Bluto",
+          "puskesmas": "Bluto",
+          "jumlah_balita_ditimbang": 2874,
+          "underweight": 93,
+          "underweight_percent": 3.2,
+          "jumlah_balita_diukur_tinggi": 2871,
+          "stunting": 67,
+          "stunting_percent": 2.3,
+          "gizi_kurang": 106,
+          "gizi_kurang_percent": 3.7,
+          "gizi_buruk": 10,
+          "gizi_buruk_percent": 0.3,
+          "latitude": -7.6543,
+          "longitude": 113.4321
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [113.4321, -7.6543]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "kecamatan": "Saronggi",
+          "puskesmas": "Saronggi",
+          "jumlah_balita_ditimbang": 1825,
+          "underweight": 60,
+          "underweight_percent": 3.3,
+          "jumlah_balita_diukur_tinggi": 1826,
+          "stunting": 67,
+          "stunting_percent": 3.7,
+          "gizi_kurang": 28,
+          "gizi_kurang_percent": 1.5,
+          "gizi_buruk": 1,
+          "gizi_buruk_percent": 0.1,
+          "latitude": -7.7890,
+          "longitude": 113.1234
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [113.1234, -7.7890]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "kecamatan": "Giligenting",
+          "puskesmas": "Giligenting",
+          "jumlah_balita_ditimbang": 631,
+          "underweight": 21,
+          "underweight_percent": 3.3,
+          "jumlah_balita_diukur_tinggi": 592,
+          "stunting": 123,
+          "stunting_percent": 20.8,
+          "gizi_kurang": 3,
+          "gizi_kurang_percent": 0.5,
+          "gizi_buruk": 3,
+          "gizi_buruk_percent": 0.5,
+          "latitude": -7.2345,
+          "longitude": 113.6789
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [113.6789, -7.2345]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "kecamatan": "Talango",
+          "puskesmas": "Talango",
+          "jumlah_balita_ditimbang": 1460,
+          "underweight": 21,
+          "underweight_percent": 1.4,
+          "jumlah_balita_diukur_tinggi": 1466,
+          "stunting": 23,
+          "stunting_percent": 1.6,
+          "gizi_kurang": 26,
+          "gizi_kurang_percent": 1.8,
+          "gizi_buruk": 0,
+          "gizi_buruk_percent": 0.0,
+          "latitude": -7.4567,
+          "longitude": 113.2345
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [113.2345, -7.4567]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "kecamatan": "Kalianget",
+          "puskesmas": "Kalianget",
+          "jumlah_balita_ditimbang": 2047,
+          "underweight": 104,
+          "underweight_percent": 5.1,
+          "jumlah_balita_diukur_tinggi": 2051,
+          "stunting": 91,
+          "stunting_percent": 4.4,
+          "gizi_kurang": 128,
+          "gizi_kurang_percent": 6.2,
+          "gizi_buruk": 5,
+          "gizi_buruk_percent": 0.2,
+          "latitude": -7.5432,
+          "longitude": 113.7890
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [113.7890, -7.5432]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "kecamatan": "Pandian",
+          "puskesmas": "Pandian",
+          "jumlah_balita_ditimbang": 1666,
+          "underweight": 23,
+          "underweight_percent": 1.4,
+          "jumlah_balita_diukur_tinggi": 1668,
+          "stunting": 11,
+          "stunting_percent": 0.7,
+          "gizi_kurang": 11,
+          "gizi_kurang_percent": 0.7,
+          "gizi_buruk": 0,
+          "gizi_buruk_percent": 0.0,
+          "latitude": -7.3210,
+          "longitude": 113.6543
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [113.6543, -7.3210]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "kecamatan": "Pamolokan",
+          "puskesmas": "Pamolokan",
+          "jumlah_balita_ditimbang": 1960,
+          "underweight": 25,
+          "underweight_percent": 1.3,
+          "jumlah_balita_diukur_tinggi": 1945,
+          "stunting": 17,
+          "stunting_percent": 0.9,
+          "gizi_kurang": 56,
+          "gizi_kurang_percent": 2.9,
+          "gizi_buruk": 7,
+          "gizi_buruk_percent": 0.4,
+          "latitude": -7.5678,
+          "longitude": 113.9876
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [113.9876, -7.5678]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "kecamatan": "Batuan",
+          "puskesmas": "Batuan",
+          "jumlah_balita_ditimbang": 554,
+          "underweight": 2,
+          "underweight_percent": 0.4,
+          "jumlah_balita_diukur_tinggi": 556,
+          "stunting": 5,
+          "stunting_percent": 0.9,
+          "gizi_kurang": 0,
+          "gizi_kurang_percent": 0.0,
+          "gizi_buruk": 1,
+          "gizi_buruk_percent": 0.2,
+          "latitude": -7.6543,
+          "longitude": 113.9876
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [113.9876, -7.6543]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "kecamatan": "Lenteng",
+          "puskesmas": "Lenteng",
+          "jumlah_balita_ditimbang": 1754,
+          "underweight": 45,
+          "underweight_percent": 2.6,
+          "jumlah_balita_diukur_tinggi": 1745,
+          "stunting": 38,
+          "stunting_percent": 2.2,
+          "gizi_kurang": 39,
+          "gizi_kurang_percent": 2.2,
+          "gizi_buruk": 5,
+          "gizi_buruk_percent": 0.3,
+          "latitude": -7.5432,
+          "longitude": 113.3456
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [113.3456, -7.5432]
+        }
+      }
+    ]
+  }
+  

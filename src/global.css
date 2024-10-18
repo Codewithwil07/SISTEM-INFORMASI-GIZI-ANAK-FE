@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* GiziBarChart.css */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Gaya umum untuk container */
+.chart-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+/* Styling untuk checkbox container */
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Styling label untuk checkbox */
+.checkbox-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+}
+
+/* Gaya umum untuk container */
+.chart-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+/* Styling untuk checkbox container */
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Styling label untuk checkbox */
+.checkbox-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+}
+
+/* Custom checkbox */
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.checkbox-custom {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #888;
+  border-radius: 50%;
+  /* Membuat checkbox menjadi bulat */
+  margin-right: 10px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+/* Checkbox checked state */
+.checkbox-input:checked+.checkbox-custom {
+  border-color: #4caf50;
+  background-color: #4caf50;
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(0, 200, 0, 0.3);
+}
+
+/* Hover effect pada checkbox */
+.checkbox-input:hover+.checkbox-custom {
+  border-color: #76ff03;
+}
+
+/* Custom checkmark ketika checkbox dicentang */
+.checkbox-input:checked+.checkbox-custom::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 10px;
+  height: 10px;
+  /* background-color: #fff; */
+  border-radius: 50%;
+  /* Membuat checkmark bulat */
+  transform: scale(0.7);
+}
+
+/* Animasi hover pada checkbox label */
+.checkbox-label:hover .checkbox-custom {
+  border-color: #76ff03;
+}
