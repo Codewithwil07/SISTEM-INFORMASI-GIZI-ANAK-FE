@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Hompage from './page/Hompage';
 import DataListPage from './page/DataListPage';
 import DataGrafikPage from './page/DataGrafikPage';
-import Layout from './page/layout';
+import Layout from './page/Layout';
 import Dashboard from './page/admin/Dashboard';
 import DataEdit from './page/admin/DataEdit';
 import DataList from './page/admin/DataList';
