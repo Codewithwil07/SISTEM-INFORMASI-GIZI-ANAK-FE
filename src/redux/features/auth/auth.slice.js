@@ -15,7 +15,6 @@ export const loginUser = createAsyncThunk(
           username,
           password,
         }),
-        credentials: 'include', // Mengirim cookie dalam request
       });
 
       if (!response.ok) {
