@@ -13,10 +13,10 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className='hidden md:flex space-x-6'>
-          <a href='#home' className='text-gray-800 hover:text-blue-600'>
-            Home
+          <a href='/auth/login' className='text-gray-800 hover:text-blue-600'>
+            Login
           </a>
-          <a href='#home' className='text-gray-800 hover:text-blue-600'>
+          {/* <a href='#home' className='text-gray-800 hover:text-blue-600'>
             Data Tabel
           </a>
           <a href='#services' className='text-gray-800 hover:text-blue-600'>
@@ -24,7 +24,7 @@ const Navbar = () => {
           </a>
           <a href='#about' className='text-gray-800 hover:text-blue-600'>
             Map
-          </a>
+          </a> */}
         </div>
 
         {/* Mobile Menu Toggle Button */}
