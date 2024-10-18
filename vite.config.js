@@ -22,7 +22,6 @@ export default defineConfig({
         target: 'https://gis-gizi-be.vercel.app',
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ''), 
       },
     },
   },
