@@ -13,16 +13,18 @@ export default defineConfig({
         },
       },
     },
-    chunkSizeWarningLimit: 10000
+    chunkSizeWarningLimit: 10000,
   },
-  plugins: [react()],
   server: {
+    port: 3000, // Port default untuk server dev
+    open: true, // Membuka browser secara otomatis saat server dijalankan
     proxy: {
       '/api': {
-        target: 'https://gis-gizi-be.vercel.app',
-        changeOrigin: true,
-        secure: false,
+        target: 'https://gis-gizi-be.vercel.app', // Ganti dengan URL backend Anda
+        changeOrigin: true, // Mengubah origin header
+        // Tidak menggunakan rewrite di sini
       },
     },
   },
+  plugins: [react()],
 });
