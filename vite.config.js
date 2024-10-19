@@ -15,14 +15,14 @@ export default defineConfig({
     },
     chunkSizeWarningLimit: 10000,
   },
+  plugins: [react()],
   server: {
     proxy: {
       '/api': {
-        target: 'https://gis-gizi-be.vercel.app', // Ganti dengan URL backend Anda
-        changeOrigin: true, // Mengubah origin header
-        // Tidak menggunakan rewrite di sini
+        target: 'https://gis-gizi-be.vercel.app',
+        changeOrigin: true,
+        secure: false,
       },
     },
   },
-  plugins: [react()],
 });
