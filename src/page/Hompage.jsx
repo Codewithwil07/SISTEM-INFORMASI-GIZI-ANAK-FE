@@ -7,7 +7,7 @@ const HomePage = () => {
           Data Gizi Anak di Kabupaten Sumenep
         </h1>
         <p className='text-lg mb-8 sm:text-md md:text-lg'>
-          Menyediakan informasi terkini tentang status gizi anak di Kabupaten
+          Menyediakan informasi terkini tentang status gizi anak di Kadf
           Sumenep.
         </p>
         <button className='bg-yellow-500 text-gray-800 px-6 py-3 rounded-full shadow-md hover:bg-yellow-400 transition duration-300'>
