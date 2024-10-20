@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   BarChart,
   Bar,
@@ -9,40 +10,12 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import { selectGiziItem } from '../redux/features/gizi/giziSelector';
 
-const kabupatenData = [
-  {
-    kecamatan: 'Pragaan',
-    bb_u_kurang: 211,
-    tb_u_pendek: 64,
-    bb_tb_gizi_kurang: 246,
-    bb_tb_gizi_buruk: 55,
-  },
-  {
-    kecamatan: 'Bluto',
-    bb_u_kurang: 93,
-    tb_u_pendek: 67,
-    bb_tb_gizi_kurang: 106,
-    bb_tb_gizi_buruk: 10,
-  },
-  {
-    kecamatan: 'Saronggi',
-    bb_u_kurang: 60,
-    tb_u_pendek: 67,
-    bb_tb_gizi_kurang: 28,
-    bb_tb_gizi_buruk: 1,
-  },
-  {
-    kecamatan: 'Giligenting',
-    bb_u_kurang: 21,
-    tb_u_pendek: 123,
-    bb_tb_gizi_kurang: 3,
-    bb_tb_gizi_buruk: 3,
-  },
-  // Tambahkan lebih banyak kecamatan...
-];
 
 const GiziBarChartKabupaten = () => {
+  const kabupatenData = useSelector(selectGiziItem);
+
   const [selectedKecamatan, setSelectedKecamatan] = useState([]);
 
   const handleCheckboxChange = (e) => {

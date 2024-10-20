@@ -1,36 +1,73 @@
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/AdminPageHeader';
 import GiziBarChart from '../../components/GiziBarChart'; // Path to the BarChart component
 import GiziCard from '../../components/GiziCard';
 import GiziMap from '../../components/GiziMap';
 import GiziPieChart from '../../components/GiziPieChart'; // Path to the PieChart component
+import {
+  selectGiziItem,
+  selectGiziStatus,
+} from '../../redux/features/gizi/giziSelector';
+import { useEffect} from 'react';
+import { getData } from '../../redux/features/gizi/giziAPI';
 
 const Dashboard = () => {
+  const item = useSelector(selectGiziItem);
+  const status = useSelector(selectGiziStatus);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getData());
+  }, [dispatch]);
+
+  const total_BBKurang = item.reduce((acc, item) => {
+    return acc + item.bb_u_kurang;
+  }, 0);
+  const a = total_BBKurang.toLocaleString('id-ID');
+
+  const total_TBPendek = item.reduce((acc, item) => {
+    return acc + item.tb_u_pendek;
+  }, 0);
+  const b = total_TBPendek.toLocaleString('id-ID');
+
+  const total_GiziBuruk = item.reduce((acc, item) => {
+    return acc + item.bb_tb_gizi_buruk;
+  }, 0);
+  const c = total_GiziBuruk.toLocaleString('id-ID');
+
+  const total_GiziKurang = item.reduce((acc, item) => {
+    return acc + item.bb_tb_gizi_kurang;
+  }, 0);
+  const d = total_GiziKurang.toLocaleString('id-ID');
+
   const dataGizi = [
     {
       title: 'BB Kurang',
-      value: 120, // jumlah balita dengan gizi baik
+      value: a, // jumlah balita dengan gizi baik
       description: 'Jumlah balita dengan gizi baik di Kabupaten Sumenep',
-      color: 'gray',
     },
     {
-      title: 'TB Kurang',
-      value: 50, // jumlah balita dengan gizi kurang
+      title: 'TB Pendek',
+      value: b, // jumlah balita dengan gizi kurang
       description: 'Jumlah balita dengan gizi kurang di Kabupaten Sumenep',
-      color: 'slate',
     },
     {
       title: 'Gizi Buruk',
-      value: 15, // jumlah balita dengan gizi buruk
+      value: c, // jumlah balita dengan gizi buruk
       description: 'Jumlah balita dengan gizi buruk di Kabupaten Sumenep',
-      color: '',
     },
     {
       title: 'Gizi Kurang',
-      value: 15, // jumlah balita dengan gizi buruk
+      value: d, // jumlah balita dengan gizi buruk
       description: 'Jumlah balita dengan gizi buruk di Kabupaten Sumenep',
-      color: '',
     },
   ];
+
+  if (status == 'loading') {
+    return <p className='text-center font-bold text-3xl'>Loading...</p>;
+  } else if (status == 'failed') {
+    return <p className='text-center font-bold text-3xl'>Eror</p>;
+  }
 
   return (
     <div className='flex flex-col gap-y-20 max-w-7xl mx-auto px-6'>
@@ -50,7 +87,7 @@ const Dashboard = () => {
 
       <section className='p-6'>
         <h3 className='text-xl mb-5 font-bold text-center'>
-           Data Gizi Balita Berdasarkan Lokasi 
+          Data Gizi Balita Berdasarkan Lokasi
         </h3>
         <GiziMap />
       </section>

@@ -7,12 +7,16 @@ import {
 } from '@tanstack/react-table';
 import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import {
-  selectGiziData,
+  selectGiziItem,
   selectGiziStatus,
 } from '../redux/features/gizi/giziSelector';
-import { getData } from '../redux/features/gizi/giziAPI';
+import {
+  getData,
+  // getDataById,
+  removeData,
+} from '../redux/features/gizi/giziAPI';
 import Pagination from './Pagination';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import Tooltip from '../components/Tooltip';
@@ -20,10 +24,9 @@ import { useNavigate } from 'react-router-dom';
 
 const TabelGizi = () => {
   const dispatch = useDispatch();
-  const dataGizi = useSelector(selectGiziData);
+  const item = useSelector(selectGiziItem);
   const status = useSelector(selectGiziStatus);
   const navigate = useNavigate();
-
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize] = useState(10);
 
@@ -31,106 +34,105 @@ const TabelGizi = () => {
     if (status === 'idle') {
       dispatch(getData());
     }
-  }, [dispatch, status]);
+  }, [status, dispatch]);
 
   const handleEdit = (rowData) => {
-    console.log('Edit data:', rowData);
-    // Tambahkan logika untuk mengedit data
+    navigate('/admin/data-edit/' + rowData.id);
   };
 
-  const handleDelete = (id) => {
-    console.log('Delete data with ID:', id);
-    // Tambahkan logika untuk menghapus data
+  const handleDelete = async (id) => {
+    try {
+      await dispatch(removeData(id)).unwrap();
+      console.log(`Data dengan ID ${id} berhasil dihapus.`);
+
+      // Panggil kembali data setelah menghapus
+      await dispatch(getData()).unwrap();
+      console.log('Data telah diperbarui setelah penghapusan.');
+    } catch (error) {
+      console.error('Error removing', error);
+    }
   };
 
-  const handleAdd = () => {
-    console.log('add');
-
-    navigate('/admin/data-tambah');
-  };
-
-  // Memoize the column definitions
+  // Definisi kolom
   const columnHelper = createColumnHelper();
-  const columns = useMemo(
-    () => [
-      columnHelper.accessor('id', {
-        header: 'NO',
-      }),
-      columnHelper.accessor('kecamatan', {
-        header: 'Kecamatan',
-      }),
-      columnHelper.accessor('puskesmas', {
-        header: 'Puskesmas',
-      }),
-      columnHelper.accessor('jumlah_balita_ditimbang', {
-        header: 'Jumlah Balita Ditimbang',
-      }),
-      columnHelper.accessor('bb_u_kurang', {
-        header: 'Berat Badan Kurang',
-      }),
-      columnHelper.accessor('persen_bb_u_kurang', {
-        header: 'Persen Berat Badan Underweight Kurang',
-      }),
-      columnHelper.accessor('jumlah_balita_diukur_tinggi_badan', {
-        header: 'Jumlah Balita Diukur Tinggi Badan',
-      }),
-      columnHelper.accessor('tb_u_pendek', {
-        header: 'Tinggi Badan Pendek',
-      }),
-      columnHelper.accessor('persen_tb_u_pendek', {
-        header: 'Persen Tinggi Badan Pendek',
-      }),
-      columnHelper.accessor('jumlah_balita_diukur_bb_tb', {
-        header: 'Jumlah Balita Diukur BB dan TB',
-      }),
-      columnHelper.accessor('bb_tb_gizi_kurang', {
-        header: 'BB TB Gizi Kurang',
-      }),
-      columnHelper.accessor('persen_gizi_kurang', {
-        header: 'Persen Gizi Kurang',
-      }),
-      columnHelper.accessor('bb_tb_gizi_buruk', {
-        header: 'BB TB Gizi Buruk',
-      }),
-      columnHelper.accessor('persen_gizi_buruk', {
-        header: 'Persen Gizi Buruk',
-      }),
-      columnHelper.accessor('laporan_tanggal', {
-        header: 'Tanggal Laporan',
-      }),
-      columnHelper.display({
-        id: 'action',
-        header: 'Action',
-        cell: ({ row }) => (
-          <div className='flex justify-around items-center gap-x-5'>
-            <Tooltip text={'edit'} position='top'>
-              <button
-                onClick={() => handleEdit(row.original)}
-                className='text-blue-600 hover:underline'
-              >
-                <FaEdit size={20} />
-              </button>
-            </Tooltip>
-            <Tooltip text={'delete'} position='top'>
-              <button
-                onClick={() => handleDelete(row.original.id)}
-                className='text-red-600 hover:underline'
-              >
-                <FaTrash size={20} />
-              </button>
-            </Tooltip>
-          </div>
-        ),
-      }),
-    ],
-    [columnHelper]
-  ); // Dependency array
 
-  // Memoize the data
-  const dataMemo = useMemo(() => dataGizi || [], [dataGizi]);
+  const columns = [
+    columnHelper.accessor('id', {
+      header: 'NO',
+    }),
+    columnHelper.accessor('kecamatan', {
+      header: 'Kecamatan',
+    }),
+    columnHelper.accessor('puskesmas', {
+      header: 'Puskesmas',
+    }),
+    columnHelper.accessor('jumlah_balita_ditimbang', {
+      header: 'Jumlah Balita Ditimbang',
+    }),
+    columnHelper.accessor('bb_u_kurang', {
+      header: 'Berat Badan Kurang',
+    }),
+    columnHelper.accessor('persen_bb_u_kurang', {
+      header: 'Persen Berat Badan Underweight Kurang(%)',
+    }),
+    columnHelper.accessor('jumlah_balita_diukur_tinggi_badan', {
+      header: 'Jumlah Balita Diukur Tinggi Badan',
+    }),
+    columnHelper.accessor('tb_u_pendek', {
+      header: 'Tinggi Badan Pendek',
+    }),
+    columnHelper.accessor('persen_tb_u_pendek', {
+      header: 'Persen Tinggi Badan Pendek(%)',
+    }),
+    columnHelper.accessor('jumlah_balita_diukur_bb_tb', {
+      header: 'Jumlah Balita Diukur BB dan TB',
+    }),
+    columnHelper.accessor('bb_tb_gizi_kurang', {
+      header: 'BB TB Gizi Kurang',
+    }),
+    columnHelper.accessor('persen_gizi_kurang', {
+      header: 'Persen Gizi Kurang(%)',
+    }),
+    columnHelper.accessor('bb_tb_gizi_buruk', {
+      header: 'BB TB Gizi Buruk',
+    }),
+    columnHelper.accessor('persen_gizi_buruk', {
+      header: 'Persen Gizi Buruk(%)',
+    }),
+    columnHelper.accessor('laporan_tanggal', {
+      header: 'Tanggal Laporan',
+    }),
+    columnHelper.display({
+      id: 'action',
+      header: 'Action',
+      cell: ({ row }) => (
+        <div className='flex justify-around items-center gap-x-5'>
+          <Tooltip text={'edit'} position='top'>
+            <button
+              onClick={() => handleEdit(row.original)}
+              className='text-blue-600 hover:underline'
+            >
+              <FaEdit size={20} />
+            </button>
+          </Tooltip>
+          <Tooltip text={'delete'} position='top'>
+            <button
+              onClick={() => handleDelete(row.original.id)}
+              className='text-red-600 hover:underline'
+            >
+              <FaTrash size={20} />
+            </button>
+          </Tooltip>
+        </div>
+      ),
+    }),
+  ];
+
+  // Data
+  const data = item || [];
 
   const table = useReactTable({
-    data: dataMemo,
+    data,
     columns,
     state: {
       pagination: {
@@ -150,7 +152,7 @@ const TabelGizi = () => {
   return (
     <div className='text-sm'>
       <div className='flex w-full items-center justify-around px-4 py-5'>
-        <Button.ButtonPrimary onClick={handleAdd}>
+        <Button.ButtonPrimary onClick={() => navigate('/admin/data-tambah')}>
           Tambah data
         </Button.ButtonPrimary>
         <h1 className='font-bold text-xl'>
@@ -161,7 +163,7 @@ const TabelGizi = () => {
 
       {status === 'loading' ? (
         <p>Loading...</p>
-      ) : status === 'success' && dataGizi && dataGizi.length > 0 ? (
+      ) : status === 'success' && data.length > 0 ? (
         <>
           <table className='table-auto border-collapse min-w-max'>
             <thead className='bg-gray-100'>
@@ -199,13 +201,13 @@ const TabelGizi = () => {
               ))}
             </tbody>
           </table>
-          {dataGizi && dataGizi.length > 10 ? (
+          {data.length > 10 && (
             <Pagination
               pageIndex={table.getState().pagination.pageIndex}
               onPageChange={setPageIndex}
               pageCount={table.getPageCount()}
             />
-          ) : null}
+          )}
         </>
       ) : (
         <p className='text-center p-10'>Data Tidak ditemukan</p>

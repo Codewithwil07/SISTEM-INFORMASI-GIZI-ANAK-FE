@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { FiHome, FiList, FiMenu, FiLogOut } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../redux/features/auth/auth.slice';
+import { getData } from '../redux/features/gizi/giziAPI';
 
 // eslint-disable-next-line react/prop-types
 const Sidebar = ({ toggleSidebar, isOpen }) => {
@@ -11,6 +12,11 @@ const Sidebar = ({ toggleSidebar, isOpen }) => {
     dispatch(logoutUser());
     navigate('/auth/login');
   };
+
+  const handleGetData = () => {
+    dispatch(getData());
+  };
+
   return (
     <div
       className={`flex flex-col h-full bg-black text-gray-100 z-50  ${
@@ -33,6 +39,7 @@ const Sidebar = ({ toggleSidebar, isOpen }) => {
       <nav className='mt-10 space-y-4 flex flex-col'>
         <NavLink
           to='/admin/dashboard'
+          onClick={handleGetData}
           className={({ isActive }) =>
             `flex items-center gap-4 py-2 px-7 hover:bg-whitetaker ${
               isActive ? 'bg-whitetaker' : ''
@@ -45,6 +52,7 @@ const Sidebar = ({ toggleSidebar, isOpen }) => {
 
         <NavLink
           to='/admin/data-list'
+          onClick={handleGetData}
           className={({ isActive }) =>
             `flex items-center gap-4 py-2 px-7 hover:bg-whitetaker ${
               isActive ? 'bg-whitetaker' : ''
@@ -59,7 +67,7 @@ const Sidebar = ({ toggleSidebar, isOpen }) => {
           to='/'
           onClick={handleLogout}
           className={({ isActive }) =>
-            `flex items-center gap-4 py-2 px-7 hover:bg-whitetaker relative top-96 ${
+            `flex items-center gap-4 py-2 px-7 hover:bg-whitetaker relative top-[26rem] ${
               isActive ? 'bg-whitetaker' : ''
             }`
           }

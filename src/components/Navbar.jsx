@@ -1,34 +1,32 @@
-import { useState } from 'react';
+import logo from '../assets/LOGOKAB.png';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => setIsOpen(!isOpen);
-
   return (
-    <nav className='bg-white shadow-md w-full'>
-      <div className='max-w-7xl mx-auto px-6 py-3 flex justify-between items-center'>
+    <nav className='bg-white shadow-md w-full '>
+      <div className='min-w-max mx-2 px-6 py-3 flex justify-center gap-x-2 items-center'>
         {/* Logo */}
-        <div className='text-2xl font-bold text-gray-900'>Logo</div>
+        <img src={logo} className='w-10 h-12' />
 
-        {/* Desktop Menu */}
-        <div className='hidden md:flex space-x-6'>
-          <a href='/auth/login' className='text-gray-800 hover:text-blue-600'>
-            Login
+        <h1 className='font-bold text-3xl'>PEMERINTAH KABUPATEN SUMENEP</h1>
+
+        {/* Desktop Menu
+        <div className='hidden md:flex space-x-5'>
+          <a href='/' className='text-gray-800 hover:text-blue-600'>
+            Home
           </a>
-          {/* <a href='#home' className='text-gray-800 hover:text-blue-600'>
+          <a href='/data-list' className='text-gray-800 hover:text-blue-600'>
             Data Tabel
           </a>
-          <a href='#services' className='text-gray-800 hover:text-blue-600'>
+          <a href='/data=grafik' className='text-gray-800 hover:text-blue-600'>
             Data Grafik
           </a>
-          <a href='#about' className='text-gray-800 hover:text-blue-600'>
+          <a href='/map' className='text-gray-800 hover:text-blue-600'>
             Map
-          </a> */}
-        </div>
+          </a>
+        </div> */}
 
         {/* Mobile Menu Toggle Button */}
-        <button
+        {/* <button
           onClick={toggleMenu}
           className='md:hidden text-gray-800 focus:outline-none'
         >
@@ -46,26 +44,26 @@ const Navbar = () => {
               d='M4 6h16M4 12h16M4 18h16'
             />
           </svg>
-        </button>
+        </button> */}
       </div>
 
       {/* Mobile Menu */}
-      <div
+      {/* <div
         className={`md:hidden ${isOpen ? 'block' : 'hidden'} bg-gray-100 p-4`}
       >
-        <a href='#home' className='block text-gray-800 py-2'>
+        <a href='/' className='block text-gray-800 py-2'>
           Home
         </a>
-        <a href='#home' className='block text-gray-800 py-2'>
+        <a href='/data-list' className='block text-gray-800 py-2'>
           Data Tabel
         </a>
-        <a href='#services' className='block text-gray-800 py-2'>
+        <a href='/data-grafik' className='block text-gray-800 py-2'>
           Data Grafik
         </a>
-        <a href='#about' className='block text-gray-800 py-2'>
+        <a href='/map' className='block text-gray-800 py-2'>
           Map
         </a>
-      </div>
+      </div> */}
     </nav>
   );
 };

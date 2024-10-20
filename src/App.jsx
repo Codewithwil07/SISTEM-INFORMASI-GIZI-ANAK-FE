@@ -1,16 +1,14 @@
+import React, { Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Hompage from './page/Hompage';
-import DataListPage from './page/DataListPage';
-import DataGrafikPage from './page/DataGrafikPage';
-import Layout from './page/Layout';
-const Dashboard = React.lazy(() => import('./page/admin/Dashboard'));
-const DataEdit = React.lazy(() => import('./page/admin/DataEdit'));
-const DataList = React.lazy(() => import('./page/admin/DataList'));
-const DataTambah = React.lazy(() => import('./page/admin/DataTambah'));
+import Layout from './page/Layouts';
+import Dashboard from './page/admin/Dashboard';
+import DataEdit from './page/admin/DataEdit';
+import DataList from './page/admin/DataList';
+import DataTambah from './page/admin/DataTambah';
 import AdminLayout from './page/admin/AdminLayout';
 import ProtectedRoute from './page/admin/ProtectedRoute';
 import NotFoundPage from './components/NotFoundPage';
-import React, { Suspense } from 'react';
 
 const AdminLogin = React.lazy(() => import('./page/auth/AdminLogin'));
 
@@ -23,14 +21,6 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Hompage />,
-      },
-      {
-        path: 'data-list',
-        element: <DataListPage />,
-      },
-      {
-        path: 'data-grafik',
-        element: <DataGrafikPage />,
       },
     ],
   },
@@ -51,7 +41,7 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: 'data-edit',
+        path: 'data-edit/:id',
         element: <DataEdit />,
       },
       {

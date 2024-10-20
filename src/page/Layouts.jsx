@@ -3,11 +3,11 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 const Layout = () => {
   return (
-    <>
+    <main>
       <Navbar />
       <Outlet />
       <Footer />
-    </>
+    </main>
   );
 };
 
