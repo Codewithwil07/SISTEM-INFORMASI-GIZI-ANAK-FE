@@ -2,12 +2,14 @@ import logo from '../assets/LOGOKAB.png';
 
 const Navbar = () => {
   return (
-    <nav className='bg-white shadow-md w-full '>
-      <div className='min-w-max mx-2 px-6 py-3 flex justify-center gap-x-2 items-center'>
+    <nav className='bg-white shadow-md w-screen'>
+      <div className='py-3 flex gap-x-2 items-center mx-10'>
         {/* Logo */}
         <img src={logo} className='w-10 h-12' />
 
-        <h1 className='font-bold text-3xl'>PEMERINTAH KABUPATEN SUMENEP</h1>
+        <h1 className='font-bold text-base md:text-3xl'>
+          PEMERINTAH KABUPATEN SUMENEP
+        </h1>
 
         {/* Desktop Menu
         <div className='hidden md:flex space-x-5'>

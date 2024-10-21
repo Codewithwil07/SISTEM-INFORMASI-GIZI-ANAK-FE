@@ -7,11 +7,16 @@ import {
 import { useEffect } from 'react';
 import { getData } from '../redux/features/gizi/giziAPI';
 import Map from './Map';
+import Button from '../components/Button';
 
 const HomePage = () => {
   const item = useSelector(selectGiziItem);
   const status = useSelector(selectGiziStatus);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getData());
+  }, [dispatch]);
 
   const total_BBKurang = item.reduce((acc, item) => {
     return acc + item.bb_u_kurang;
@@ -33,15 +38,14 @@ const HomePage = () => {
   }, 0);
   const d = total_GiziKurang.toLocaleString('id-ID');
 
-  useEffect(() => {
-    dispatch(getData);
-  }, [dispatch]);
-
-  console.log(item);
-
   if (status === 'loading') {
-    return <p>Loading...</p>;
+    return <p className='text-center py-20'>Loading...</p>;
   }
+
+  const smoothScroll = (section) => {
+    const scroll = document.getElementById(section);
+    scroll.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <div className='bg-gray-50'>
@@ -51,12 +55,15 @@ const HomePage = () => {
           Data Gizi Anak di Kabupaten Sumenep
         </h1>
         <p className='text-lg mb-8 sm:text-md md:text-lg'>
-          Menyediakan informasi terkini tentang status gizi anak di Kadf
+          Menyediakan informasi terkini tentang status gizi anak di Kabupaten
           Sumenep.
         </p>
-        <button className='bg-yellow-500 text-gray-800 px-6 py-3 rounded-full shadow-md hover:bg-yellow-400 transition duration-300'>
+        <Button
+          onClick={() => smoothScroll('gizi-bar')}
+          className='bg-yellow-500 text-gray-800 px-6 py-3 rounded-full shadow-md hover:bg-yellow-400 transition duration-300'
+        >
           Lihat Data
-        </button>
+        </Button>
       </header>
 
       {/* Data Section */}
@@ -65,57 +72,54 @@ const HomePage = () => {
           Status Gizi Anak di Kabupaten Sumenep
         </h2>
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12'>
-          <div className='bg-white p-6 shadow-lg rounded-lg hover:shadow-xl transition duration-300'>
-            <h3 className='text-xl font-medium text-gray-800 mb-4'>
-              Balita Underweight
-            </h3>
-            <p className='text-gray-600'>
-              Jumlah balita dengan status berat badan kurang di Kabupaten
-              Sumenep.
-            </p>
-            <div className='mt-4 text-center text-2xl font-semibold text-blue-700'>
-              {a}
+          {[
+            {
+              title: 'Balita Underweight',
+              description:
+                'Jumlah balita dengan status berat badan kurang di Kabupaten Sumenep.',
+              value: a,
+            },
+            {
+              title: 'Balita Stunting',
+              description:
+                'Jumlah balita dengan status gizi stunting di Kabupaten Sumenep.',
+              value: b,
+            },
+            {
+              title: 'Balita Gizi Buruk',
+              description:
+                'Jumlah balita dengan status gizi buruk di Kabupaten Sumenep.',
+              value: c,
+            },
+            {
+              title: 'Balita Gizi Kurang',
+              description:
+                'Jumlah balita dengan status gizi kurang di Kabupaten Sumenep.',
+              value: d,
+            },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className='bg-white p-6 shadow-lg rounded-lg hover:shadow-xl transition duration-300'
+            >
+              <h3 className='text-xl font-medium text-gray-800 mb-4'>
+                {item.title}
+              </h3>
+              <p className='text-gray-600'>{item.description}</p>
+              <div className='mt-4 text-center text-2xl font-semibold text-blue-700'>
+                {item.value}
+              </div>
             </div>
-          </div>
-          <div className='bg-white p-6 shadow-lg rounded-lg hover:shadow-xl transition duration-300'>
-            <h3 className='text-xl font-medium text-gray-800 mb-4'>
-              Balita Stunting
-            </h3>
-            <p className='text-gray-600'>
-              Jumlah balita dengan status gizi stunting di Kabupaten Sumenep.
-            </p>
-            <div className='mt-4 text-center text-2xl font-semibold text-blue-700'>
-              {b}
-            </div>
-          </div>
-          <div className='bg-white p-6 shadow-lg rounded-lg hover:shadow-xl transition duration-300'>
-            <h3 className='text-xl font-medium text-gray-800 mb-4'>
-              Balita Gizi Buruk
-            </h3>
-            <p className='text-gray-600'>
-              Jumlah balita dengan status gizi buruk di Kabupaten Sumenep.
-            </p>
-            <div className='mt-4 text-center text-2xl font-semibold text-blue-700'>
-              {c}
-            </div>
-          </div>
-          <div className='bg-white p-6 shadow-lg rounded-lg hover:shadow-xl transition duration-300'>
-            <h3 className='text-xl font-medium text-gray-800 mb-4'>
-              Balita Gizi Kurang
-            </h3>
-            <p className='text-gray-600'>
-              Jumlah balita dengan status gizi kurang di Kabupaten Sumenep.
-            </p>
-            <div className='mt-4 text-center text-2xl font-semibold text-blue-700'>
-              {d}
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
       {/* Interactive Chart Section */}
-      <section className='bg-white pt-24 pb-72'>
-        <h2 className='text-3xl font-semibold mb-44 text-center sm:text-2xl md:text-3xl'>
+      <section
+        className='bg-white pt-24 pb-72 grid grid-rows-2 gap-y-20'
+        id='gizi-bar'
+      >
+        <h2 className='text-3xl font-semibold mb-44 text-center hidden md:block sm:text-2xl md:text-3xl'>
           Tren Gizi Anak di Kabupaten Sumenep
         </h2>
         <div className='max-w-7xl mx-auto px-6'>

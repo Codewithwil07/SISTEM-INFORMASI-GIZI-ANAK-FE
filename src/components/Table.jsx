@@ -21,6 +21,7 @@ import Pagination from './Pagination';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import Tooltip from '../components/Tooltip';
 import { useNavigate } from 'react-router-dom';
+import { exportToExcel } from '../utils/constant';
 
 const TabelGizi = () => {
   const dispatch = useDispatch();
@@ -44,10 +45,6 @@ const TabelGizi = () => {
     try {
       await dispatch(removeData(id)).unwrap();
       console.log(`Data dengan ID ${id} berhasil dihapus.`);
-
-      // Panggil kembali data setelah menghapus
-      await dispatch(getData()).unwrap();
-      console.log('Data telah diperbarui setelah penghapusan.');
     } catch (error) {
       console.error('Error removing', error);
     }
@@ -158,7 +155,9 @@ const TabelGizi = () => {
         <h1 className='font-bold text-xl'>
           Tabel Gizi Balita di Kabupaten Sumenep
         </h1>
-        <Button.ButtonSuccess>Ekspor data</Button.ButtonSuccess>
+        <Button.ButtonSuccess onClick={() => exportToExcel(data)}>
+          Ekspor data
+        </Button.ButtonSuccess>
       </div>
 
       {status === 'loading' ? (

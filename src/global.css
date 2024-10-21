@@ -41,12 +41,7 @@
 }
 
 /* Styling untuk checkbox container */
-.checkbox-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 20px;
-}
+
 
 /* Styling label untuk checkbox */
 .checkbox-label {
@@ -69,7 +64,7 @@
   position: relative;
   width: 20px;
   height: 20px;
-  border: 2px solid #888;
+  border: 2px solid #000;
   border-radius: 50%;
   /* Membuat checkbox menjadi bulat */
   margin-right: 10px;
@@ -79,15 +74,13 @@
 
 /* Checkbox checked state */
 .checkbox-input:checked+.checkbox-custom {
-  border-color: #4caf50;
-  background-color: #4caf50;
+  background-color: rgb(30, 64, 175);
   transform: scale(1.1);
-  box-shadow: 0 0 8px rgba(0, 200, 0, 0.3);
-}
+  }
 
 /* Hover effect pada checkbox */
 .checkbox-input:hover+.checkbox-custom {
-  border-color: #76ff03;
+  border-color: #76f;
 }
 
 /* Custom checkmark ketika checkbox dicentang */
@@ -106,5 +99,32 @@
 
 /* Animasi hover pada checkbox label */
 .checkbox-label:hover .checkbox-custom {
-  border-color: #76ff03;
+  border-color: #76f;
+}
+
+
+/* Container untuk slider */
+.slider-container {
+  width: 100%;
+  padding: 20px;
+}
+
+/* Untuk browser berbasis Webkit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 3px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(30, 64, 175);
 }
